@@ -1,6 +1,6 @@
 # 1. Paper Information
 
-## Title: Khaoula Abdenouri, Karima Echihabi. KTree: a Kernel-Based Index for Scalable Exact Similarity Search
+## Title: KTree: a Kernel-Based Index for Scalable Exact Similarity Search
 
 ## Abstract: 
 
