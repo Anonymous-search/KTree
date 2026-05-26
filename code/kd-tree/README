@@ -1,0 +1,10 @@
+# KD-Tree K-Nearest Neighbor
+
+Prerequisites
+-------------
+- g++
+- CMake
+
+
+# Parametrization for the KTree experiments 
+Experiments with kd-tree were done using a fanout of 2 and a maximum leaf size of 10k vectors, with placing a split at the average. 

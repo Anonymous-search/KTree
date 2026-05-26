@@ -1,0 +1,3 @@
+
+#define KTree_VERSION_MAJOR @KTree_VERSION_MAJOR@
+#define KTree_VERSION_MINOR @KTree_VERSION_MINOR@

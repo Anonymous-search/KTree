@@ -1,0 +1,131 @@
+{
+	"paths": {
+		"workspace": "..",
+		"output_root": "out"
+	},
+	"datasets": {
+		"synthetic_100k_512": {
+			"label": "Synthetic 100K x 512",
+			"path": "data/synthetic_100k_512_smoke.bin",
+			"dimensions": 512,
+			"dataset_size": 100000,
+			"queries": {
+				"smoke": {
+					"path": "data/synthetic_100k_512_smoke_queries.bin",
+					"queries_size": 50,
+					"label": "test"
+				}
+			}
+		}
+	},
+	"baselines": {
+		"ktree": {
+			"enabled": true,
+			"adapter": "ktree",
+			"build_dir": "build/ktree",
+			"binary": "build/ktree/ktree",
+			"default_leaf_size": 20000
+		},
+		"dumpy": {
+			"enabled": true,
+			"adapter": "dumpy",
+			"build_dir": "build/dumpy",
+			"binary": "build/dumpy/Dumpy",
+			"config_template": "Baselines/dumpy/config.ini",
+			"segment_num": 16,
+			"bits_cardinality": 8,
+			"threshold": 10000,
+			"fbl_size_mb": 12480,
+			"bits_reserve": 3
+		},
+		"dstree": {
+			"enabled": true,
+			"adapter": "dstree",
+			"workdir": "Baselines/dstree/ds-tree-c",
+			"binary": "Baselines/dstree/ds-tree-c/bin/dstree",
+			"buffer_size": 64,
+			"leaf_size": 100
+		},
+		"mtree": {
+			"enabled": true,
+			"adapter": "mtree",
+			"workdir": "Baselines/mtree",
+			"binary": "Baselines/mtree/mtree"
+		},
+		"rtree": {
+			"enabled": true,
+			"adapter": "rtree",
+			"build_dir": "build/rtree_from_source",
+			"binary": "build/rtree_from_source/RTreeBulkLoad",
+			"capacity": 1000
+		},
+		"sofa_sax": {
+			"enabled": true,
+			"adapter": "sofa",
+			"build_dir": "build/sofa_manual",
+			"binary": "build/sofa_manual/bin/MESSI",
+			"function_type": 3,
+			"disk_function_type": 0,
+			"sax_cardinality": 8,
+			"leaf_size": 20000,
+			"read_block": 20000,
+			"flush_limit": 300000,
+			"queue_number": 36,
+			"cpu_type": 36,
+			"simd": true
+		},
+		"sofa_sfa": {
+			"enabled": false,
+			"adapter": "sofa",
+			"build_dir": "build/sofa_manual",
+			"binary": "build/sofa_manual/bin/MESSI",
+			"function_type": 4,
+			"sax_cardinality": 8,
+			"coeff_number": 32,
+			"leaf_size": 20000,
+			"read_block": 20000,
+			"flush_limit": 300000,
+			"queue_number": 36,
+			"cpu_type": 36,
+			"sample_size": 1000000,
+			"sample_type": 3,
+			"histogram_type": 2,
+			"simd": true
+		},
+		"vaplus": {
+			"enabled": true,
+			"adapter": "vaplus",
+			"build_dir": "build/vaplus_manual",
+			"binary": "build/vaplus_manual/vaplus",
+			"buffer_size": 5400,
+			"leaf_size": 1000
+		},
+		"spartan": {
+			"enabled": true,
+			"adapter": "spartan",
+			"workdir": "Baselines/SPARTAN",
+			"alpha_min": 2,
+			"alpha_max": 2,
+			"wordlen_min": 2,
+			"wordlen_max": 2
+		}
+	},
+	"experiments": {
+		"synthetic_10k_512_smoke_1nn": {
+			"figure": "Smoke Test",
+			"dataset": "synthetic_100k_512",
+			"baselines": [
+				"ktree"
+			],
+			"query_sets": [
+				"smoke"
+			],
+			"k_values": [
+				1,
+				5
+			],
+			"metric": "wall_clock_ms_per_query",
+			"title": "Synthetic 10K x 512 Smoke Test (1-NN)"
+		}
+	}
+}
